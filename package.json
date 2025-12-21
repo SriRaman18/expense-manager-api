@@ -1,0 +1,36 @@
+{
+  "name": "expense-manager-api",
+  "version": "1.0.0",
+  "description": "Expense Manager API with Express, TypeScript, PostgreSQL, and Prisma",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "bun run --watch src/index.ts",
+    "build": "bun build src/index.ts --outdir dist --target node --minify",
+    "start": "bun run dist/index.js",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:migrate": "prisma migrate dev",
+    "db:studio": "prisma studio",
+    "db:seed": "bun run src/prisma/seed.ts"
+  },
+  "keywords": [
+    "express",
+    "typescript",
+    "postgresql",
+    "prisma",
+    "api"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.19.1",
+    "express": "^4.21.1",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.7.5",
+    "prisma": "^5.19.1",
+    "typescript": "^5.6.3"
+  }
+}
