@@ -39,9 +39,15 @@ pipeline {
                 echo '📦 Installing dependencies...'
                 sh '''
                     if command -v bun &> /dev/null; then
+                        echo "✅ Using Bun"
                         bun install
-                    else
+                    elif command -v npm &> /dev/null; then
+                        echo "✅ Using npm"
                         npm install
+                    else
+                        echo "❌ ERROR: Neither bun nor npm is installed!"
+                        echo "Please install Node.js (npm) or Bun on the Jenkins server"
+                        exit 1
                     fi
                 '''
             }
@@ -53,8 +59,11 @@ pipeline {
                 sh '''
                     if command -v bun &> /dev/null; then
                         bun run db:generate
-                    else
+                    elif command -v npm &> /dev/null; then
                         npm run db:generate
+                    else
+                        echo "❌ ERROR: Neither bun nor npm is installed!"
+                        exit 1
                     fi
                 '''
             }
@@ -66,8 +75,11 @@ pipeline {
                 sh '''
                     if command -v bun &> /dev/null; then
                         bun run db:migrate || bun run db:push
-                    else
+                    elif command -v npm &> /dev/null; then
                         npm run db:migrate || npm run db:push
+                    else
+                        echo "❌ ERROR: Neither bun nor npm is installed!"
+                        exit 1
                     fi
                 '''
             }
@@ -79,8 +91,11 @@ pipeline {
                 sh '''
                     if command -v bun &> /dev/null; then
                         bun run build
-                    else
+                    elif command -v npm &> /dev/null; then
                         npm run build
+                    else
+                        echo "❌ ERROR: Neither bun nor npm is installed!"
+                        exit 1
                     fi
                 '''
             }
