@@ -3,7 +3,7 @@ import prisma from "./config/database";
 
 const PORT = process.env.PORT || 4000;
 
-// CI/CD: Auto-deploy on push to main test 11
+// CI/CD: Auto-deploy on push to main test 12
 
 // Start server
 const server = app.listen(PORT, () => {
